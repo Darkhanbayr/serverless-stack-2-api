@@ -5,8 +5,6 @@ plugins:
   - serverless-webpack
   - serverless-offline
 
-# serverless-webpack configuration
-# Enable auto-packing of external modules
 custom:
   # Our stage is based on what is passed in when running serverless
   # commands. Or fallsback to what we have set in the provider section.
@@ -26,22 +24,18 @@ custom:
   # Fallback to default if it is not in prod.
   environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
 
-
-
 provider:
   name: aws
   runtime: nodejs8.10
   stage: dev
   region: us-east-1
-  
+
   # These environment variables are made available to our functions
   # under process.env.
   environment:
     tableName: ${self:custom.tableName}
     stripeSecretKey: ${self:custom.environment.stripeSecretKey}
 
-  # 'iamRoleStatement' defines the permission policy for the Lambda function.
-  # In this case Lambda functions are granted with permissions to access DynamoDB.
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -121,6 +115,15 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  billing:
+    handler: billing.main
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam
+
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
@@ -132,15 +135,3 @@ resources:
   # Cognito
   - ${file(resources/cognito-user-pool.yml)}
   - ${file(resources/cognito-identity-pool.yml)}
-
-billing:
-  handler: billing.main
-  events:
-    - http:
-        path: billing
-        method: post
-        cors: true
-        authorizer: aws_iam
-
-
-
