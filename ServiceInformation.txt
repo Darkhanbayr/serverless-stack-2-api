@@ -1,0 +1,37 @@
+Service Information
+service: notes-app-2-api
+stage: dev
+region: us-east-1
+stack: notes-app-2-api-dev
+resources: 42
+api keys:
+  None
+endpoints:
+  POST - https://nvmxm15be9.execute-api.us-east-1.amazonaws.com/dev/notes
+  GET - https://nvmxm15be9.execute-api.us-east-1.amazonaws.com/dev/notes/{id}
+  GET - https://nvmxm15be9.execute-api.us-east-1.amazonaws.com/dev/notes
+  PUT - https://nvmxm15be9.execute-api.us-east-1.amazonaws.com/dev/notes/{id}
+  DELETE - https://nvmxm15be9.execute-api.us-east-1.amazonaws.com/dev/notes/{id}
+functions:
+  create: notes-app-2-api-dev-create
+  get: notes-app-2-api-dev-get
+  list: notes-app-2-api-dev-list
+  update: notes-app-2-api-dev-update
+  delete: notes-app-2-api-dev-delete
+layers:
+  None
+
+Stack Outputs
+AttachmentsBucketName: notes-app-2-api-dev-attachmentsbucket-otfq9pxmm3sq
+UserPoolClientId: 4cdjr057kd0qh599bsabgebq7d
+UserPoolId: us-east-1_KKSbxv2ug
+DeleteLambdaFunctionQualifiedArn: arn:aws:lambda:us-east-1:281137612065:function:notes-app-2-api-dev-delete:1
+CreateLambdaFunctionQualifiedArn: arn:aws:lambda:us-east-1:281137612065:function:notes-app-2-api-dev-create:1
+GetLambdaFunctionQualifiedArn: arn:aws:lambda:us-east-1:281137612065:function:notes-app-2-api-dev-get:1
+UpdateLambdaFunctionQualifiedArn: arn:aws:lambda:us-east-1:281137612065:function:notes-app-2-api-dev-update:1
+IdentityPoolId: us-east-1:28acbc5e-147b-488e-bac6-61161bb82067
+ListLambdaFunctionQualifiedArn: arn:aws:lambda:us-east-1:281137612065:function:notes-app-2-api-dev-list:1
+ServiceEndpoint: https://nvmxm15be9.execute-api.us-east-1.amazonaws.com/dev
+ServerlessDeploymentBucketName: notes-app-2-api-dev-serverlessdeploymentbucket-lzglfcuqtbjn
+
+Serverless Enterprise: Run `serverless login` and deploy again to explore, monitor, secure your serverless project for free.
